@@ -18,7 +18,7 @@ const Orders = () => {
     }
     const navigator = useNavigate()
     const goTo = () =>{
-        navigator('/inventory')
+        navigator('/shipment')
     }
     return (
         <div className='shop-container'>
@@ -29,7 +29,7 @@ const Orders = () => {
             </div>
             <div className="cart-container">
                 <Cart cart={cart}>
-                   <button onClick={goTo}>To Inventory</button>
+                   <button onClick={goTo}>Shipping</button>
                 </Cart>
             </div>
 

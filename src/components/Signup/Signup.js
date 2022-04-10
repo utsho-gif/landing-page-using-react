@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Signup.css";
 import { FcGoogle } from "react-icons/fc";
-import { useAuthState, useCreateUserWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 
 const Signup = () => {
@@ -32,7 +32,11 @@ const Signup = () => {
     }
     
 
-  const [googleSignin] = useSignInWithGoogle(auth);
+  const [singInWithGoogle] = useSignInWithGoogle(auth);
+  const handleSignIn = () => {
+    singInWithGoogle()
+    .then(() => {})
+  }
 
   const handleCreateUser = (event) => {
     event.preventDefault();
@@ -101,7 +105,7 @@ const Signup = () => {
           <p style={{ margin: "0 10px", marginBottom: "5px" }}>or</p>
           <div>_____</div>
         </div>
-        <button onClick={() => googleSignin()} className="google-btn" type="submit">
+        <button onClick={() => handleSignIn()} className="google-btn" type="submit">
           <FcGoogle
             style={{ fontSize: "20px", marginRight: "5px", marginTop: "3px" }}
           ></FcGoogle>{" "}
