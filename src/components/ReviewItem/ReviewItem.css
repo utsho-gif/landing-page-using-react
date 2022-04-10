@@ -8,6 +8,11 @@
 }
 .review-item img{
     width: 91px;
+    border-radius: 20px;
+    border: 2px solid lightgreen;
+}
+.review-item-details{
+    margin-left: 20px;
 }
 .review-item-details p{
     margin: 0;
