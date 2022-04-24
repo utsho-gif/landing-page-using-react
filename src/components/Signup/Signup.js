@@ -90,7 +90,7 @@ const Signup = () => {
               required
             />
           </div>
-          <p>{user?.displayname}</p>
+          <p>{user?.displayName}</p>
           <p style={{ color: "red" }}>{error}</p>
           <input className="form-submit" type="submit" value="SingUp" />
         </form>
