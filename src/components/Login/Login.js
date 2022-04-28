@@ -14,7 +14,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  const [singInWithGoogle] = useSignInWithGoogle(auth);
+  const [singInWithGoogle, googleuser] = useSignInWithGoogle(auth);
   const handleLogin = () => {
     singInWithGoogle().then(() => {});
   };
@@ -30,7 +30,7 @@ const Login = () => {
     event.preventDefault();
     signInWithEmailAndPassword(email, password);
   };
-  if (user) {
+  if (user || googleuser) {
     navigate(from, { replace: true });
   }
   return (

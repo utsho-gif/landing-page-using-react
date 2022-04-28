@@ -14,22 +14,23 @@ const Shop = () => {
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(10);
 
-
-    useEffect(() => {
-        fetch(`http://localhost:5000/product?page=${page}&size=${size}`)
-        .then(res => res.json())
-        .then(data => setProducts(data))
-    },[page, size])
+  useEffect(() => {
+    fetch(
+      `https://murmuring-basin-85240.herokuapp.com/product?page=${page}&size=${size}`
+    )
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, [page, size]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/datacount')
-    .then(res => res.json())
-    .then(data => {
-      const count = data.count;
-      const pageCount = Math.ceil(count/size);
-      setPages(pageCount);
-    });
-  },[page, size])
+    fetch("https://murmuring-basin-85240.herokuapp.com/datacount")
+      .then((res) => res.json())
+      .then((data) => {
+        const count = data.count;
+        const pageCount = Math.ceil(count / size);
+        setPages(pageCount);
+      });
+  }, [page, size]);
 
   const handleCart = (selectedProduct) => {
     const exist = cart.find((product) => product._id === selectedProduct._id);
@@ -63,15 +64,19 @@ const Shop = () => {
           ></Product>
         ))}
         <div className="pagination">
-          {
-            [...Array(pages).keys()].map(number => <button
-              className={page === number ? 'selected' : ''} 
-              onClick={() => setPage(number)}>{number + 1}
-              </button>)
-          }
-          <select onChange={e => setSize(e.target.value)}>
+          {[...Array(pages).keys()].map((number) => (
+            <button
+              className={page === number ? "selected" : ""}
+              onClick={() => setPage(number)}
+            >
+              {number + 1}
+            </button>
+          ))}
+          <select onChange={(e) => setSize(e.target.value)}>
             <option value="5">5</option>
-            <option value="10" selected>10</option>
+            <option value="10" selected>
+              10
+            </option>
             <option value="15">15</option>
             <option value="20">20</option>
           </select>
